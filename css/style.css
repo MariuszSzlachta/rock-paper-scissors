@@ -4,6 +4,10 @@
 
 body {
   font-family: 'Press Start 2P', cursive;
+  width: 100vh;
+  height: 100vh;
+  margin: 0 auto;
+  position: relative;
 }
 
 .container {
@@ -44,7 +48,7 @@ body {
   font-weight: bold;
 }
 
-.output {
+.output, .result {
   position: relative;
   width: 600px;
   margin: 5%;
@@ -59,7 +63,7 @@ body {
   line-height: 1.5;
 }
 
-.output::before {
+.output::before, .result::before {
   content: 'result:';
   position: absolute;
   top: -50px;
@@ -68,6 +72,19 @@ body {
   bottom: 0;
   font-size: 2rem;
   text-transform: uppercase;
+}
+
+.result {
+  width: 80%;
+  max-width: 1000px;
+  padding: 2%;
+  border: none;
+  font-size: 3rem;
+}
+
+.result::before {
+  content: '';
+  display: none;
 }
 
 .paper {
@@ -80,5 +97,12 @@ body {
 
 .scissors {
   background-color: burlywood;
+}
+
+.newGame {
+  background-color: lime;
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
 }
 /*# sourceMappingURL=style.css.map */

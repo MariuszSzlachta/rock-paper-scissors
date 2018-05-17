@@ -4,16 +4,23 @@
 
 body {
   font-family: 'Press Start 2P', cursive;
+  width: 100vh;
+  height: 100vh;
+  margin: 0 auto;
+  position: relative;
 }
+
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
+
 .game-title {
   text-transform: uppercase;
 }
+
 .btn-group {
   margin: 2rem 0;
   display: flex;
@@ -45,8 +52,8 @@ body {
   text-align: center;
   justify-content: center;
   line-height: 1.5;
-  &::before{
-    content:'result:';
+  &::before {
+    content: 'result:';
     position: absolute;
     top: -50px;
     left: 0;
@@ -57,12 +64,34 @@ body {
   }
 }
 
+.result {
+  @extend .output;
+  width: 80%;
+  max-width: 1000px;
+  padding: 2%;
+  border: none;
+  font-size: 3rem;
+  &::before {
+    content: '';
+    display: none;
+  }
+}
+
 .paper {
   background-color: beige;
 }
+
 .rock {
   background-color: darkgrey;
 }
+
 .scissors {
   background-color: burlywood;
+}
+
+.newGame {
+  background-color: lime;
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
 }
