@@ -5,20 +5,30 @@
 body {
   font-family: 'Press Start 2P', cursive;
 }
+
 .container {
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-direction: column;
+      flex-direction: column;
 }
+
 .game-title {
   text-transform: uppercase;
 }
+
 .btn-group {
   margin: 2rem 0;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
 }
 
 .btn {
@@ -41,28 +51,34 @@ body {
   border: 2px dashed #005;
   padding: 5%;
   font-family: 'Press Start 2P', cursive;
+  display: -ms-flexbox;
   display: flex;
   text-align: center;
-  justify-content: center;
+  -ms-flex-pack: center;
+      justify-content: center;
   line-height: 1.5;
-  &::before{
-    content:'result:';
-    position: absolute;
-    top: -50px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    font-size: 2rem;
-    text-transform: uppercase;
-  }
+}
+
+.output::before {
+  content: 'result:';
+  position: absolute;
+  top: -50px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  font-size: 2rem;
+  text-transform: uppercase;
 }
 
 .paper {
   background-color: beige;
 }
+
 .rock {
   background-color: darkgrey;
 }
+
 .scissors {
   background-color: burlywood;
 }
+/*# sourceMappingURL=style.css.map */
