@@ -3,7 +3,8 @@
     btnPaper = document.querySelector('.paper'),
     btnScissors = document.querySelector('.scissors'),
     btnNewGame = document.querySelector('.newGame'),
-    output = document.querySelector('#output'),
+    buttons = document.querySelectorAll('.btn');
+  output = document.querySelector('#output'),
     result = document.querySelector('#result'),
     playerWins = 0,
     aiWins = 0,
@@ -18,14 +19,28 @@
   }
   showResult();
 
+  // game off function
+  var gameOverMsg = ' game over, please press the new game button!';
+
+  function gameOver() {
+    buttonsLen = buttons.length;
+    for (var i = 0; i < buttonsLen; i++) {
+      buttons[i].addEventListener('click', function () {
+        output.innerHTML = gameOverMsg;
+        result.innerHTML = '';
+      });
+    }
+  }
+
   var playerMove = function (move) {
+
+
     var rounds = roundLimit;
     var ai = function () {
       var aiPick = ['paper', 'rock', 'scissors'];
       return aiPick[Math.floor(Math.random() * 3)];
     }
     var aiMove = ai();
-    var gameOverMsg = ' game over, please press the new game button!';
     // who win
     if (move == aiMove) {
       output.innerText = 'It\'s TIE! Player and computer played ' + move.toUpperCase();
@@ -39,17 +54,14 @@
 
     //entire game wins
     showResult();
+
     if (playerWins == rounds) {
       output.innerHTML = 'YOU WON THE ENTIRE GAME ' + '<br>' + gameOverMsg;
-      btnPaper.disabled = true;
-      btnRock.disabled = true;
-      btnScissors.disabled = true;
+      gameOver();
     }
     if (aiWins == rounds) {
       output.innerHTML = 'AI WON THE ENTIRE GAME ' + '<br>' + gameOverMsg;
-      btnPaper.disabled = true;
-      btnRock.disabled = true;
-      btnScissors.disabled = true;
+      gameOver();
     }
   }
 
@@ -70,9 +82,6 @@
     aiWins = 0;
     output.innerHTML = '';
     showResult();
-    btnPaper.disabled = false;
-    btnRock.disabled = false;
-    btnScissors.disabled = false;
   });
 
 })();

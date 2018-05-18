@@ -35,7 +35,7 @@ body {
       align-items: center;
 }
 
-.btn {
+.btn, .newGame {
   margin: 0.5rem;
   border: 1px solid transparent;
   border-radius: 6px;

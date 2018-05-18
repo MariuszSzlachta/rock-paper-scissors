@@ -90,6 +90,7 @@ body {
 }
 
 .newGame {
+  @extend .btn;
   background-color: lime;
   position: absolute;
   bottom: 50px;
