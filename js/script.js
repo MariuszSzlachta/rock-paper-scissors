@@ -3,8 +3,8 @@
     btnPaper = document.querySelector('.paper'),
     btnScissors = document.querySelector('.scissors'),
     btnNewGame = document.querySelector('.newGame'),
-    buttons = document.querySelectorAll('.btn');
-  output = document.querySelector('#output'),
+    buttons = document.querySelectorAll('.btn'),
+    output = document.querySelector('#output'),
     result = document.querySelector('#result'),
     playerWins = 0,
     aiWins = 0,
@@ -31,14 +31,14 @@
       });
     }
   }
-
+  
+  var ai = function () {
+    var aiPick = ['paper', 'rock', 'scissors'];
+    return aiPick[Math.floor(Math.random() * 3)];
+  }
   var playerMove = function (move) {
 
     var rounds = roundLimit;
-    var ai = function () {
-      var aiPick = ['paper', 'rock', 'scissors'];
-      return aiPick[Math.floor(Math.random() * 3)];
-    }
     var aiMove = ai();
     // who win
     if (move == aiMove) {
@@ -47,7 +47,7 @@
       output.innerText = 'YOU WON: you played ' + move.toUpperCase() + ' and computer played ' + aiMove.toUpperCase();
       playerWins++;
       console.log('PLAYER: ' + playerWins);
-    } else {
+    } else{
       output.innerText = 'Computer WON: you played ' + move.toUpperCase() + ' but computer played: ' + aiMove.toUpperCase();
       aiWins++;
       console.log('AI: ' + aiWins);

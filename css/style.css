@@ -1,108 +1,27 @@
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
-body {
-  font-family: 'Press Start 2P', cursive;
-  width: 100vh;
-  height: 100vh;
-  margin: 0 auto;
-  position: relative;
-}
+body { font-family: 'Press Start 2P', cursive; width: 100vh; height: 100vh; margin: 0 auto; position: relative; }
 
-.container {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: center;
-      justify-content: center;
-  -ms-flex-align: center;
-      align-items: center;
-  -ms-flex-direction: column;
-      flex-direction: column;
-}
+.container { display: -ms-flexbox; display: flex; -ms-flex-pack: center; justify-content: center; -ms-flex-align: center; align-items: center; -ms-flex-direction: column; flex-direction: column; }
 
-.game-title {
-  text-transform: uppercase;
-}
+.game-title { text-transform: uppercase; }
 
-.btn-group {
-  margin: 2rem 0;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: center;
-      justify-content: center;
-  -ms-flex-align: center;
-      align-items: center;
-}
+.btn-group { margin: 2rem 0; display: -ms-flexbox; display: flex; -ms-flex-pack: center; justify-content: center; -ms-flex-align: center; align-items: center; }
 
-.btn, .newGame {
-  margin: 0.5rem;
-  border: 1px solid transparent;
-  border-radius: 6px;
-  width: 140px;
-  height: 40px;
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: #005;
-  text-transform: uppercase;
-  font-weight: bold;
-}
+.btn, .newGame { margin: 0.5rem; border: 1px solid transparent; border-radius: 6px; width: 140px; height: 40px; font-size: 1.2rem; cursor: pointer; color: #005; text-transform: uppercase; font-weight: bold; }
 
-.output, .result {
-  position: relative;
-  width: 600px;
-  margin: 5%;
-  border: 2px dashed #005;
-  padding: 5%;
-  font-family: 'Press Start 2P', cursive;
-  display: -ms-flexbox;
-  display: flex;
-  text-align: center;
-  -ms-flex-pack: center;
-      justify-content: center;
-  line-height: 1.5;
-}
+.output, .result { position: relative; width: 600px; margin: 5%; border: 2px dashed #005; padding: 5%; font-family: 'Press Start 2P', cursive; display: -ms-flexbox; display: flex; text-align: center; -ms-flex-pack: center; justify-content: center; line-height: 1.5; }
 
-.output::before, .result::before {
-  content: 'result:';
-  position: absolute;
-  top: -50px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  font-size: 2rem;
-  text-transform: uppercase;
-}
+.output::before, .result::before { content: 'result:'; position: absolute; top: -50px; left: 0; right: 0; bottom: 0; font-size: 2rem; text-transform: uppercase; }
 
-.result {
-  width: 80%;
-  max-width: 1000px;
-  padding: 2%;
-  border: none;
-  font-size: 3rem;
-}
+.result { width: 80%; max-width: 1000px; padding: 2%; border: none; font-size: 3rem; }
 
-.result::before {
-  content: '';
-  display: none;
-}
+.result::before { content: ''; display: none; }
 
-.paper {
-  background-color: beige;
-}
+.paper { background-color: beige; }
 
-.rock {
-  background-color: darkgrey;
-}
+.rock { background-color: darkgrey; }
 
-.scissors {
-  background-color: burlywood;
-}
+.scissors { background-color: burlywood; }
 
-.newGame {
-  background-color: lime;
-  position: absolute;
-  bottom: 50px;
-  right: 50px;
-}
-/*# sourceMappingURL=style.css.map */
+.newGame { background-color: lime; position: absolute; bottom: 50px; right: 50px; }
