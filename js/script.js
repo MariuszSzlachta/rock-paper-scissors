@@ -1,14 +1,16 @@
 (function () {
+  var playerMoveElements = document.querySelectorAll('.player-move');
+  var playerMoveElementsLen = playerMoveElements.length;
   var btnRock = document.querySelector('.rock'),
-    btnPaper = document.querySelector('.paper'),
-    btnScissors = document.querySelector('.scissors'),
-    btnNewGame = document.querySelector('.newGame'),
-    buttons = document.querySelectorAll('.btn'),
-    output = document.querySelector('#output'),
-    result = document.querySelector('#result'),
-    playerWins = 0,
-    aiWins = 0,
-    roundLimit = 0;
+  btnPaper = document.querySelector('.paper'),
+  btnScissors = document.querySelector('.scissors'),
+  btnNewGame = document.querySelector('.newGame'),
+  buttons = document.querySelectorAll('.btn'),
+  output = document.querySelector('#output'),
+  result = document.querySelector('#result'),
+  playerWins = 0,
+  aiWins = 0,
+  roundLimit = 0;
 
   var roundCounter = function () {
     return window.prompt('How many round you want to play entire game?');
@@ -31,7 +33,7 @@
       });
     }
   }
-  
+
   var ai = function () {
     var aiPick = ['paper', 'rock', 'scissors'];
     return aiPick[Math.floor(Math.random() * 3)];
@@ -47,7 +49,7 @@
       output.innerText = 'YOU WON: you played ' + move.toUpperCase() + ' and computer played ' + aiMove.toUpperCase();
       playerWins++;
       console.log('PLAYER: ' + playerWins);
-    } else{
+    } else {
       output.innerText = 'Computer WON: you played ' + move.toUpperCase() + ' but computer played: ' + aiMove.toUpperCase();
       aiWins++;
       console.log('AI: ' + aiWins);
@@ -67,16 +69,40 @@
   }
 
   function gameStart() {
-    btnPaper.addEventListener('click', function () {
-      playerMove('paper');
-    });
-    btnRock.addEventListener('click', function () {
-      playerMove('rock');
-    });
-    btnScissors.addEventListener('click', function () {
-      playerMove('scissors');
-    });
+    for (var i = 0; i < playerMoveElementsLen; i++) {
+      playerMoveElements[i].addEventListener('click', function(){        
+        playerMove(this.getAttribute('data-move'));
+      });
+    }
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // btnPaper.addEventListener('click', function () {
+    //   playerMove('paper');
+    // });
+    // btnRock.addEventListener('click', function () {
+    //   playerMove('rock');
+    // });
+    // btnScissors.addEventListener('click', function () {
+    //   playerMove('scissors');
+    // });
+  // }
   // listeners
 
   btnNewGame.addEventListener('click', function () {
