@@ -1,40 +1,79 @@
 (function () {
+  // ------------DECLARATIONS----------------
+
   var playerMoveElements = document.querySelectorAll('.player-move'),
-  playerMoveElementsLen = playerMoveElements.length,
-  // btnRock = document.querySelector('.rock'),
-  // btnPaper = document.querySelector('.paper'),
-  // btnScissors = document.querySelector('.scissors'),
-  btnNewGame = document.querySelector('.newGame'),
-  buttons = document.querySelectorAll('.btn'),
-  output = document.querySelector('#output'),
-  result = document.querySelector('#result');
-  
+    playerMoveElementsLen = playerMoveElements.length,
+    modals = document.querySelectorAll('.modal'),
+    overlay = document.querySelector('.overlay'),
+    btnClose = document.querySelector('.close'),
+    comunicatField = document.querySelector('.comunicat'),
+    btnNewGame = document.querySelector('.newGame'),
+    buttons = document.querySelectorAll('.btn'),
+    output = document.querySelector('#output'),
+    result = document.querySelector('#result');
+  // ---------------EVENT LISTENERS------------------
+  btnClose.addEventListener('click', closeModal);
+  overlay.addEventListener('click', closeModal);
+  btnNewGame.addEventListener('click', gameStart);
+  // -------------------OBJECTS AND FUNCTIONS----------------------
   var params = {
-    playerWins:0,
+    playerWins: 0,
     aiWins: 0,
-    roundLimit: 0    
+    roundLimit: 0,
+    gameOverMsg: ' game over, please press the new game button!'
   }
 
   var roundCounter = function () {
-    return window.prompt('How many round you want to play entire game?');
+    return Number(window.prompt('How many round you want to play entire game?'));
   }
 
   function showResult() {
     result.innerHTML = params.roundLimit + ' round game' + '<br>' + 'YOU ' + params.playerWins + ' : ' + params.aiWins + ' AI';
   }
-  // showResult();
 
-  // game off function
-  var gameOverMsg = ' game over, please press the new game button!';
+  function turnOnListeners() {
+    for (var i = 0; i < playerMoveElementsLen; i++) {
+      playerMoveElements[i].addEventListener('click', function () {
+        playerMove(this.getAttribute('data-move'));
+      });
+    }
+  }
+
+  function turnOffListeners() {
+    for (var i = 0; i < playerMoveElementsLen; i++) {
+      playerMoveElements[i].removeEventListener('click', function () {
+        playerMove(this.getAttribute('data-move'));
+      });
+    }
+  }
+
+  function resetParams() {
+    params.roundLimit = roundCounter();
+    params.playerWins = 0;
+    params.aiWins = 0;
+    output.classList.remove('hide');
+    output.innerHTML = '';
+  }
+
+  function gameStart() {
+    turnOnListeners();
+    resetParams();
+    showResult();
+  }
 
   function gameOver() {
     buttonsLen = buttons.length;
+    //add listeners to show modal
     for (var i = 0; i < buttonsLen; i++) {
       buttons[i].addEventListener('click', function () {
-        output.innerHTML = gameOverMsg;
+        showModal();
+        output.classList.add('hide'); // znika pole output
         result.innerHTML = '';
       });
     }
+    //remove listeners
+    console.log(playerMove(this.getAttribute('data-move')));
+    turnOffListeners();
   }
 
   var ai = function () {
@@ -42,7 +81,6 @@
     return aiPick[Math.floor(Math.random() * 3)];
   }
   var playerMove = function (move) {
-
     var rounds = params.roundLimit;
     var aiMove = ai();
     // who win
@@ -57,37 +95,40 @@
       params.aiWins++;
       console.log('AI: ' + params.aiWins);
     }
-
     //entire game wins
     showResult();
 
     if (params.playerWins == rounds) {
-      output.innerHTML = 'YOU WON THE ENTIRE GAME ' + '<br>' + gameOverMsg;
+      comunicatField.innerHTML = 'YOU WON THE ENTIRE GAME ' + '<br>' + params.gameOverMsg;
       gameOver();
     }
     if (params.aiWins == rounds) {
-      output.innerHTML = 'AI WON THE ENTIRE GAME ' + '<br>' + gameOverMsg;
+      comunicatField.innerHTML = 'AI WON THE ENTIRE GAME ' + '<br>' + params.gameOverMsg;
       gameOver();
     }
+  };
+  
+  // -----------------------------obsługa modali----------------------------------------
+
+  function showModal() {
+    // do modala dodaj klase show || 
+    // do overlaya dodaj klase show
+    overlay.classList.add('show');
+    modals[0].classList.add('show');
+  };
+
+  function closeModal(event) {
+    // niech sie uruchamia po nacisnieciu x z klasą close i niech usówa klase show z modala i overlaya
+    event.stopPropagation();
+    overlay.classList.remove('show');
+    modals[0].classList.remove('show');
   }
+  // usuniecie propagacji
+  for (var i = 0; i < modals.length; i++) {
+    modals[i].addEventListener('click', function (event) {
+      event.stopPropagation();
+    })
+  };
 
-  function gameStart() {
-    for (var i = 0; i < playerMoveElementsLen; i++) {
-      playerMoveElements[i].addEventListener('click', function(){        
-        playerMove(this.getAttribute('data-move'));
-      });
-    }
-  }
-
-  // listeners
-
-  btnNewGame.addEventListener('click', function () {
-    params.roundLimit = roundCounter();
-    params.playerWins = 0;
-    params.aiWins = 0;
-    output.innerHTML = '';
-    showResult();
-    gameStart();
-  });
 
 })();
