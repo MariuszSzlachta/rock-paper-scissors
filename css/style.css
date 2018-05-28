@@ -125,8 +125,9 @@ body {
   background: #fff;
   width: 600px;
   position: absolute;
-  top: 50%;
+  top: 60%;
   left: 50%;
+  padding: 2rem;
   transform: translate3d(-50%, -50%, 0);
 }
 
@@ -155,5 +156,6 @@ body {
 .comunicat {
   font-size: 1rem;
   text-align: center;
+  padding: 2rem;
 }
 /*# sourceMappingURL=style.css.map */
