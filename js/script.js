@@ -10,7 +10,9 @@ var btnRock = document.querySelector('.rock'),
   aiWins = 0,
   roundLimit = 0,
   gamePossible = false;
-
+  btnPaper.disabled = true;
+  btnRock.disabled = true;
+  btnScissors.disabled = true;
 
   btnPaper.addEventListener('click', function () {
     playerMove('paper');
@@ -41,8 +43,10 @@ function gameOver() {
   for (var i = 0; i < buttonsLen; i++) {
     buttons[i].addEventListener('click', function () {
       if (gamePossible == false) {
-        output.innerHTML = gameOverMsg;
-        result.innerHTML = '';
+        // output.innerHTML = gameOverMsg;
+        btnPaper.disabled = true;
+        btnRock.disabled = true;
+        btnScissors.disabled = true;
       }
     });
   }
@@ -71,14 +75,17 @@ var playerMove = function (move) {
 
   //entire game wins
   showResult();
-
+  
   if (playerWins == rounds) {
     output.innerHTML = 'YOU WON THE ENTIRE GAME ' + '<br>' + gameOverMsg;
     gameOver();
+    showResult();
   }
   if (aiWins == rounds) {
-    output.innerHTML = 'AI WON THE ENTIRE GAME ' + '<br>' + gameOverMsg;
+    var who = 'AI WON THE ENTIRE GAME '
+    output.innerHTML = who + '<br>' + gameOverMsg;
     gameOver();
+    showResult();
   }
 }
 
@@ -90,6 +97,9 @@ btnNewGame.addEventListener('click', function () {
   aiWins = 0;
   output.innerHTML = '';
   showResult();
+  btnPaper.disabled = false;
+  btnRock.disabled = false;
+  btnScissors.disabled = false;
   gamePossible = true;
 });
 
