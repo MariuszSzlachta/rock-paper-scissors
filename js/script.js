@@ -34,11 +34,21 @@ var roundCounter = function () {
 function showResult() {
   result.innerHTML = params.roundLimit + ' round game' + '<br>' + 'YOU ' + params.playerWins + ' : ' + params.aiWins + ' AI';
 }
-
+// listeners for player moves
 for (var i = 0; i < playerMoveElementsLen; i++) {
   playerMoveElements[i].addEventListener('click', function () {
     if (params.gamePossible === true) {
       game(this.getAttribute('data-move'));
+    }
+  });
+}
+// listeners for modal
+buttonsLen = buttons.length;
+for (var i = 0; i < buttonsLen; i++) {
+  buttons[i].addEventListener('click', function () {
+    if (params.gamePossible === false) {
+      output.classList.add('hide'); // znika pole output
+      showModal();
     }
   });
 }
@@ -59,7 +69,6 @@ function resetParams() {
 function gameStart() {
   resetParams();
   showResult();
-  delPropagation(); // czy trzeba to wu wywołać? Czy można deklaracje zamienić na IIFE ?
 }
 
 function showEndGameTable() {
@@ -69,19 +78,6 @@ function showEndGameTable() {
   }
 }
 
-function gameOver(e) {
-  buttonsLen = buttons.length;
-  params.gamePossible = false;
-  //add listeners to show modal
-  for (var i = 0; i < buttonsLen; i++) {
-    buttons[i].addEventListener('click', function () {
-      if (params.gamePossible === false) {
-        output.classList.add('hide'); // znika pole output
-        showModal();
-      }
-    });
-  }
-}
 // ruch komputera
 var ai = function () {
   var aiPick = ['paper', 'rock', 'scissors'];
@@ -119,12 +115,12 @@ function game(playerMove) {
   // warunki wygranej całej gry
   if (params.playerWins == params.roundLimit) {
     comunicatField.innerHTML = 'YOU WON THE ENTIRE GAME ' + '<br>' + params.gameOverMsg;
-    gameOver();
+    params.gamePossible = false;
     showEndGameTable();
   }
   if (params.aiWins == params.roundLimit) {
     comunicatField.innerHTML = 'AI WON THE ENTIRE GAME ' + '<br>' + params.gameOverMsg;
-    gameOver();
+    params.gamePossible = false;
     showEndGameTable();
   }
 
@@ -146,12 +142,12 @@ function closeModal(event) {
   modals[0].classList.remove('show');
 }
 // usuniecie propagacji
-function delPropagation() {
+(function delPropagation() {
   for (var i = 0; i < modals.length; i++) {
     modals[i].addEventListener('click', function (event) {
       event.stopPropagation();
     })
   };
-}
+})();
 
 // })();
