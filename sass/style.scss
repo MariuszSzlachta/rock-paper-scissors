@@ -16,7 +16,12 @@ body {
   align-items: center;
   flex-direction: column;
 }
-
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .game-title {
   text-transform: uppercase;
 }
@@ -92,7 +97,4 @@ body {
 .newGame {
   @extend .btn;
   background-color: lime;
-  position: absolute;
-  top: 50px;
-  right: 50px;
 }

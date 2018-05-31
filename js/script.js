@@ -1,4 +1,4 @@
-// (function () {
+(function () {
 var btnRock = document.querySelector('.rock'),
   btnPaper = document.querySelector('.paper'),
   btnScissors = document.querySelector('.scissors'),
@@ -10,20 +10,14 @@ var btnRock = document.querySelector('.rock'),
   aiWins = 0,
   roundLimit = 0,
   gamePossible = false;
-  btnPaper.disabled = true;
-  btnRock.disabled = true;
-  btnScissors.disabled = true;
 
-  btnPaper.addEventListener('click', function () {
-    playerMove('paper');
-  });
-  btnRock.addEventListener('click', function () {
-    playerMove('rock');
-  });
-  btnScissors.addEventListener('click', function () {
-    playerMove('scissors');
-  });
-
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', function () {
+      if (gamePossible === true) {
+        playerMove(this.getAttribute('class'));
+      }
+    });
+  }
 
 var roundCounter = function () {
   return window.prompt('How many round you want to play entire game?');
@@ -36,21 +30,6 @@ function showResult() {
 
 // game off function
 var gameOverMsg = ' game over, please press the new game button!';
-
-function gameOver() {
-  buttonsLen = buttons.length;
-  gamePossible = false;
-  for (var i = 0; i < buttonsLen; i++) {
-    buttons[i].addEventListener('click', function () {
-      if (gamePossible == false) {
-        // output.innerHTML = gameOverMsg;
-        btnPaper.disabled = true;
-        btnRock.disabled = true;
-        btnScissors.disabled = true;
-      }
-    });
-  }
-}
 
 var ai = function () {
   var aiPick = ['paper', 'rock', 'scissors'];
@@ -66,11 +45,9 @@ var playerMove = function (move) {
   } else if ((move == 'paper') && (aiMove == 'rock') || (move == 'rock') && (aiMove == 'scissors') || (move == 'scissors') && (aiMove == 'paper')) {
     output.innerText = 'YOU WON: you played ' + move.toUpperCase() + ' and computer played ' + aiMove.toUpperCase();
     playerWins++;
-    console.log('PLAYER: ' + playerWins);
   } else {
     output.innerText = 'Computer WON: you played ' + move.toUpperCase() + ' but computer played: ' + aiMove.toUpperCase();
     aiWins++;
-    console.log('AI: ' + aiWins);
   }
 
   //entire game wins
@@ -78,18 +55,16 @@ var playerMove = function (move) {
   
   if (playerWins == rounds) {
     output.innerHTML = 'YOU WON THE ENTIRE GAME ' + '<br>' + gameOverMsg;
-    gameOver();
+    gamePossible = false;
     showResult();
   }
   if (aiWins == rounds) {
     var who = 'AI WON THE ENTIRE GAME '
     output.innerHTML = who + '<br>' + gameOverMsg;
-    gameOver();
+    gamePossible = false;
     showResult();
   }
 }
-
-// listeners
 
 btnNewGame.addEventListener('click', function () {
   roundLimit = roundCounter();
@@ -97,10 +72,7 @@ btnNewGame.addEventListener('click', function () {
   aiWins = 0;
   output.innerHTML = '';
   showResult();
-  btnPaper.disabled = false;
-  btnRock.disabled = false;
-  btnScissors.disabled = false;
   gamePossible = true;
 });
 
-// })();
+})();
