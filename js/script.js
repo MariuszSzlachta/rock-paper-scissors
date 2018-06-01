@@ -24,7 +24,8 @@ var params = {
   gameOverMsg: ' game over, please press the new game button!',
   gamePossible: false,
   progress: [],
-  tableRow: []
+  tableRow: [],
+  currentRound: 0
 }
 // prompt
 var roundCounter = function () {
@@ -64,6 +65,7 @@ function resetParams() {
   params.tableRow = [];
   params.progress = [];
   tableBody.innerHTML = '';
+  params.currentRound = 0;
 }
 
 function gameStart() {
@@ -102,9 +104,10 @@ function game(playerMove) {
     params.aiWins++;
     roundResult = '0 : 1';
   }
+  params.currentRound++;
   // tworzenie obiektu co kolejkę
   params.progress.push({
-    rounds: params.roundLimit,
+    rounds: params.currentRound,
     plMove: playerMove,
     aiMove: aiMove,
     roundResult: roundResult,
