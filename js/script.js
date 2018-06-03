@@ -25,7 +25,8 @@ var params = {
   gamePossible: false,
   progress: [],
   tableRow: [],
-  currentRound: 0
+  currentRound: 0,
+  nthInit: false
 }
 // prompt
 var roundCounter = function () {
@@ -47,7 +48,7 @@ for (var i = 0; i < playerMoveElementsLen; i++) {
 buttonsLen = buttons.length;
 for (var i = 0; i < buttonsLen; i++) {
   buttons[i].addEventListener('click', function () {
-    if (params.gamePossible === false) {
+    if (params.gamePossible === false & params.nthInit == true) {
       output.classList.add('hide'); // znika pole output
       showModal();
     }
@@ -66,6 +67,7 @@ function resetParams() {
   params.progress = [];
   tableBody.innerHTML = '';
   params.currentRound = 0;
+  params.nthInit = true;
 }
 
 function gameStart() {
