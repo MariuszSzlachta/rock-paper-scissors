@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="vendor/reset.css">
   <link href="https://fonts.googleapis.com/css?family=Press+Start+2P|Roboto:400,700" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <title>rock-paper-scissors</title>
@@ -12,19 +13,45 @@
 
 <body>
   <div class="container">
-    <header>
+    <header class="header">
       <h1 class="game-title">rock - paper - scissors</h1>
       <button class="newGame">New Game</button>
     </header>
     <div class="btn-group">
-      <button class="btn paper">paper</button>
-      <button class="btn rock">rock</button>
-      <button class="btn scissors">scissors</button>
+      <button class="btn paper player-move" data-move="paper">paper</button>
+      <button class="btn rock player-move" data-move="rock">rock</button>
+      <button class="btn scissors player-move" data-move="scissors">scissors</button>
     </div>
 
     <div id="result" class="result"></div>
     <div id="output" class="output"></div>
+
   </div>
+  <!--container-->
+  <div class="overlay">
+    <div id="modal-output" class="modal">
+      <a href="#" class="close">x</a>
+      <div class="content">
+        <div class="game-progress">
+          <table>
+            <thead>
+              <tr>
+                <th>Round Number</th>
+                <th>Player Move</th>
+                <th>Ai Move</th>
+                <th>Round Result</th>
+                <th>Game Result</th>
+              </tr>
+            </thead>
+            <tbody class="table-body">
+            </tbody>
+          </table>
+        </div>
+        <div id="comunicat" class="comunicat"></div>
+      </div>
+    </div>
+  </div>
+  <!--overlay-->
 
   <script src="js/script.js"></script>
 </body>
