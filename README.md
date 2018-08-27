@@ -9,13 +9,14 @@ This is my implementation of common game rock-paper-scissors. Game was created d
 ## Technologies
 
 - HTML
-- CSS
+- SCSS
 - Vanilla JS
+- NPM scripts: browser-sync, nu-html-checker, globster, rim-raf. See more in package.json if you want.
 
 ## How to run
 
-- Download project from my github and unpack
-- Open in your web browser index.html file
+- Download project from my github and unpack.
+- Open in your web browser index.html file.
 
 
 ## Functionality
