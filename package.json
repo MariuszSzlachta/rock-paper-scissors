@@ -1,5 +1,5 @@
 {
-  "name": "learning-git-3",
+  "name": "rock-paper-sciossors",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -19,8 +19,8 @@
     "watch:browser-sync": " browser-sync  start --server --files css/*.css *.html js/*.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Mariusz Szlachta",
+  "license": "MIT",
   "devDependencies": {
     "browser-sync": "^2.24.4",
     "globstar": "^1.0.0",
